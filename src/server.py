@@ -25,10 +25,15 @@ class DBHttpServer(HTTPServer):
 
 
 class DBRequestHandler(BaseHTTPRequestHandler):
-    def do_GET(self):
+    def do_GET(self, data=b''):
         self.send_response(200)
         self.end_headers()
-        self.wfile.write(b'Response')
+        with open('src/index.html', 'rb') as file:
+            page = file.read()
+            page = page.replace(b'$DATA', data)
+            self.wfile.write(page)
 
     def do_POST(self):
-        pass
+        sql = self.rfile.read(int(self.headers['Content-length'])).replace(b'SQL=', b'')
+        data = str(self.server.db.query(sql)).encode()
+        self.do_GET(data)
