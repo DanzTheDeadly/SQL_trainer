@@ -1,0 +1,38 @@
+server_params:
+  host: localhost
+  port: 8080
+
+db_params:
+  dbname: postgres
+  host: localhost
+  port: 5432
+  user: postgres
+  password: pgpass
+
+data:
+  names:
+    - Daniel
+    - Igor
+    - Toma
+    - Maria
+    - Luka
+    - Tony
+    - Dima
+    - Vera
+    - Alina
+    - Kseniya
+    - Mike
+    - Pukhlik
+    - Scrooge
+  cities:
+    - Moscow
+    - St. Petersburg
+    - London
+    - Paris
+    - New York
+    - Kiev
+    - Minsk
+    - Limassol
+    - Prague
+    - Beijing
+    - Berlin
