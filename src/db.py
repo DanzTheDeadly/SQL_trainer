@@ -1,6 +1,7 @@
 import docker
 import psycopg2 as pg
 from time import sleep
+from src.sql.users import generate_users_table
 
 
 class DB:
@@ -46,19 +47,17 @@ class DB:
                 try:
                     db_cursor.execute(query)
                     result = db_cursor.fetchall()
-                except pg.errors.SyntaxError as ex:
+                except Exception as ex:
                     result = ex
+                except KeyboardInterrupt:
+                    raise
             db_cursor.close()
         db_conn.close()
         return result
 
     def create_tables(self):
         """create all tables below"""
-        self.create_users_table()
-
-    def create_users_table(self):
-        """create users table with random data and serial user ids"""
-        pass
+        self.query(generate_users_table(self.data))
 
 
 if __name__ == '__main__':

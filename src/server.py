@@ -18,6 +18,8 @@ class DBHttpServer(HTTPServer):
 
     def run(self):
         self.db.start()
+        self.db.create_tables()
+        print('Database ready')
         self.serve_forever()
 
     def stop(self):
