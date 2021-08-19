@@ -1,4 +1,6 @@
 import docker
+from docker import DockerClient
+from docker.models.containers import Container
 import psycopg2 as pg
 from time import sleep
 from src.sql.users import generate_users_table
@@ -7,48 +9,58 @@ from src.sql.users import generate_users_table
 class DB:
     """Class handles DB container and fills it with random data to analyze"""
 
-    client: docker.DockerClient
-    container: docker.models.containers.Container
+    CLIENT: DockerClient
+    CONTAINER: Container
+    PARAMS: dict
+    DATA: dict
+    STATE_RUNNING: bool
+    TABLES: list
 
     def __init__(self, db_params, data=None):
-        """create container"""
-        self.db_params = db_params
-        self.client = docker.from_env()
-        self.container = self.client.containers.create(
+        """create instance"""
+        self.PARAMS = db_params
+        self.CLIENT = docker.from_env()
+        self.CONTAINER = None
+        self.DATA = data
+        self.STATE_RUNNING = False
+        self.TABLES = []
+
+    def start(self):
+        self.CONTAINER = self.CLIENT.containers.create(
             image='postgres',
             auto_remove=True,
             environment={
-                'POSTGRES_PASSWORD': self.db_params['password'],
-                'POSTGRES_DB': self.db_params['dbname'],
-                'POSTGRES_USER': self.db_params['user']
+                'POSTGRES_PASSWORD': self.PARAMS['password'],
+                'POSTGRES_DB': self.PARAMS['dbname'],
+                'POSTGRES_USER': self.PARAMS['user']
             },
             name='postgres',
-            ports={'5432': self.db_params['port']}
+            ports={'5432': self.PARAMS['port']}
         )
-        self.data = data
-
-    def start(self):
-        self.container.start()
+        self.CONTAINER.start()
+        self.STATE_RUNNING = True
         sleep(2)
 
     def stop(self):
-        self.container.kill()
-        self.client.close()
+        if self.STATE_RUNNING:
+            self.CONTAINER.kill()
+        self.CLIENT.close()
+        self.STATE_RUNNING = False
 
     def query(self, query):
         with pg.connect(
-            dbname=self.db_params['dbname'],
+            dbname=self.PARAMS['dbname'],
             host='localhost',
-            port=self.db_params['port'],
-            user=self.db_params['user'],
-            password=self.db_params['password']
+            port=self.PARAMS['port'],
+            user=self.PARAMS['user'],
+            password=self.PARAMS['password']
         ) as db_conn:
             with db_conn.cursor() as db_cursor:
                 try:
                     db_cursor.execute(query)
-                    result = db_cursor.fetchall()
+                    result = ([col.name for col in db_cursor.description], db_cursor.fetchall())
                 except Exception as ex:
-                    result = ex
+                    result = str(ex)
                 except KeyboardInterrupt:
                     raise
             db_cursor.close()
@@ -57,7 +69,10 @@ class DB:
 
     def create_tables(self):
         """create all tables below"""
-        self.query(generate_users_table(self.data))
+        self.query(generate_users_table(self.DATA))
+        #
+        tables_sql = '''SELECT tablename FROM pg_catalog.pg_tables WHERE schemaname = 'public' '''
+        self.TABLES = [table_name[0] for table_name in self.query(tables_sql)[1]]
 
 
 if __name__ == '__main__':

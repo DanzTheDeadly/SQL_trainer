@@ -7,6 +7,6 @@ if __name__ == '__main__':
     server = DBHttpServer(config)
     try:
         server.run()
-    except:
+    except KeyboardInterrupt:
         server.stop()
-        raise
+        exit()
