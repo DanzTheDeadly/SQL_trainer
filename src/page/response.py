@@ -7,29 +7,28 @@ def generate_http_response(post_request: str, db: DB) -> (int, str):
         <html lang="en">
         <head>
             <style>
-                table, th, td {{
-                    border: 1px solid gray;
-                }}
-                article {{
-                    width: 70%;
-                    margin-left:auto;
-                    margin-right:auto;
-                    margin-top:3%;
-                }}
+                {style}
             </style>
             <meta charset="UTF-8">
             <title>Database GUI</title>
         </head>
         <body>
-            <article>
+            <article id="panel">
                 <p>Database GUI</p>
                 {state}
                 {tables}
-                {form}
+                {button}
+            </article>
+            <br>
+            <article id="sql_field">
+                {sql}
                 {data}
             </article>
         </body>
         </html>'''
+
+    with open('src/page/style.css') as file:
+        style = file.read()
 
     if post_request.startswith('SQL='):
         if not db.STATE_RUNNING:
@@ -53,18 +52,19 @@ def generate_http_response(post_request: str, db: DB) -> (int, str):
                 '''.format(header=table_header, rows=table_rows)
             state = '<p>Database UP</p>'
             tables = '<p>Database tables: {}</p>'.format(', '.join(db.TABLES))
-            form = '''
+            button = '''
                 </form>
                     <form method="post">
                     <input type="submit" name="DB_SIGNAL" value="Stop Database"></input>
                 </form>
-                <br></br>
-                <form method="post" enctype="text/plain">
-                    <input type="text" name="SQL">
-                    <button type="submit">Submit query</button>
+            '''
+            sql = '''
+                <form id="textbox" method="post" enctype="text/plain">
+                    <input id="input_field" type="text" name="SQL">
+                    <button id="input_button" type="submit">Submit query</button>
                 </form>
             '''
-            return 200, html.format(state=state, tables=tables, form=form, data=data)
+            return 200, html.format(style=style, state=state, tables=tables, button=button, sql=sql, data=data)
 
     elif post_request.startswith('DB_SIGNAL='):
         if not db.STATE_RUNNING:
@@ -72,29 +72,31 @@ def generate_http_response(post_request: str, db: DB) -> (int, str):
             db.create_tables()
             state = '<p>Database UP</p>'
             tables = '<p>Database tables: {}</p>'.format(', '.join(db.TABLES))
-            form = '''
+            button = '''
                 </form>
                     <form method="post">
                     <input type="submit" name="DB_SIGNAL" value="Stop Database"></input>
                 </form>
-                <br></br>
-                <form method="post" enctype="text/plain">
-                    <input type="text" name="SQL">
-                    <button type="submit">Submit query</button>
-                
+            '''
+            sql = '''
+                <form id="textbox" method="post" enctype="text/plain">
+                    <input id="input_field" type="text" name="SQL">
+                    <button id="input_button" type="submit">Submit query</button>
+                </form>
             '''
             data = ''
-            return 200, html.format(state=state, tables=tables, form=form, data=data)
+            return 200, html.format(style=style, state=state, tables=tables, button=button, sql=sql, data=data)
         else:
             db.stop()
             state = '<p>Database DOWN</p>'
             tables = ''
-            form = '''
+            button = '''
                 <form method="post">
                     <input type="submit" name="DB_SIGNAL" value="Start Database"></input>
                 </form>
             '''
+            sql = ''
             data = ''
-            return 200, html.format(state=state, tables=tables, form=form, data=data)
+            return 200, html.format(style=style, state=state, tables=tables, button=button, sql=sql, data=data)
     else:
         return 400, ''

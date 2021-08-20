@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        table, td, th {border: 1px solid gray;}
+    </style>
+    <meta charset="UTF-8">
+    <title>Database GUI</title>
+</head>
+<body>
+    <article style="margin-top: 3%; margin-left: auto; margin-right: auto; width: 30%; text-align: center;">
+        <p>Database GUI</p>
+        <p>Database UP</p>
+        <p>Database tables: users</p>
+    <form method="post">
+        <input type="submit" name="DB_SIGNAL" value="Stop Database" style="width: 150px; height: 30px"></input>
+    </form>
+    </article>
+    <br>
+    <article id="sql_field" style="font-family: Monospace; margin-left: 10%; margin-right: 10%;">
+        <form method="post" enctype="text/plain" style="float: left; width: 40%; font-family: Monospace;">
+            <input type="text" name="SQL" style="font-family: Monospace; width: 60%; float: left">
+            <button type="submit" style="width: 30%; float: right;">Submit query</button>
+        </form>
+        <table style="float: right; width: 40%;">
+            <tr><th>user_id</th><th>name</th><th>city</th><th>gender</th><th>regdate</th></tr>
+            <tr><td>1</td><td>Igor</td><td>Minsk</td><td>F</td><td>2021-06-26 04:46:52</td></tr>
+            <tr><td>2</td><td>Kseniya</td><td>Beijing</td><td>M</td><td>2021-06-30 03:00:43</td></tr>
+            <tr><td>3</td><td>Dima</td><td>Kiev</td><td>F</td><td>2021-04-22 15:35:00</td></tr>
+            <tr><td>4</td><td>Kseniya</td><td>Paris</td><td>F</td><td>2021-07-01 15:38:29</td></tr>
+            <tr><td>5</td><td>Vasiliy</td><td>Ivanovsk</td><td>F</td><td>2021-01-21 08:19:11</td></tr>
+        </table>
+    </article>
+</body>
+</html>

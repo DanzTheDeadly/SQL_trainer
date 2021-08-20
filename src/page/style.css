@@ -1,0 +1,37 @@
+#panel {
+    width: 70%;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 3%;
+}
+
+table, th, td {
+    border: 1px solid gray;
+}
+
+#sql_field {
+    font-family: Monospace; margin-left: 10%; margin-right: 10%;
+}
+
+#textbox {
+    float: left;
+    width: 45%;
+    font-family: Monospace;
+}
+
+#input_field {
+    font-family: Monospace;
+    width: 60%;
+    float: left;
+}
+
+#input_button {
+    width: 20%;
+    float: right;
+}
+
+table {
+    float: right;
+    width: 45%;
+}
+
