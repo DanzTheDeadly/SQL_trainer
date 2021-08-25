@@ -1,12 +1,12 @@
 # SQL_trainer
 
-A tool to practice SQL queries.
+### A tool to practice SQL queries.
 
 This program requires docker and python.
 
 # Usage
 
-# sudo python3 main.py
+`sudo python3 main.py`
 
 sudo is required to start docker container with postgres DB.
 Open a web browser and visit localhost:8080.

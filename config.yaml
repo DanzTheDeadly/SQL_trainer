@@ -39,4 +39,9 @@ data:
     - Beijing
     - Berlin
     - Ivanovsk
+  actions:
+    - click
+    - purchase
+    - cart
+    - favourite
   start_timestamp: 1609448400

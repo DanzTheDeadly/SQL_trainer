@@ -4,6 +4,7 @@ from docker.models.containers import Container
 import psycopg2 as pg
 from time import sleep
 from src.sql.users import generate_users_table
+from src.sql.user_actions import generate_user_actions_table
 
 
 class DB:
@@ -61,6 +62,7 @@ class DB:
                     result = ([col.name for col in db_cursor.description], db_cursor.fetchall())
                 except Exception as ex:
                     result = str(ex)
+                    print(result)
                 except KeyboardInterrupt:
                     raise
             db_cursor.close()
@@ -70,8 +72,9 @@ class DB:
     def create_tables(self):
         """create all tables below"""
         self.query(generate_users_table(self.DATA))
+        self.query(generate_user_actions_table(self.DATA))
         #
-        tables_sql = '''SELECT tablename FROM pg_catalog.pg_tables WHERE schemaname = 'public' '''
+        tables_sql = '''SELECT tablename FROM pg_catalog.pg_tables WHERE schemaname = 'public';'''
         self.TABLES = [table_name[0] for table_name in self.query(tables_sql)[1]]
 
 
