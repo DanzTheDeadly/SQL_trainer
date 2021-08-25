@@ -1,6 +1,6 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from src.db import DB
-from src.html.response import generate_get_response, generate_post_response
+from src.response import generate_get_response, generate_post_response
 
 
 class DBHttpServer(HTTPServer):
