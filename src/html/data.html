@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        {style}
+    </style>
+    <meta charset="UTF-8">
+    <title>Database GUI</title>
+</head>
+<body>
+    <article id="status_bar">
+        <p>Database GUI</p>
+        <p>Database UP</p>
+        <p>Database tables: {tables}</p>
+        <form method="post">
+            <input type="submit" name="DB_SIGNAL" value="Stop Database">
+        </form>
+    </article>
+    <br>
+    <article id="sql_gui">
+        <form id="sql_form" method="post" enctype="text/plain">
+            <input id="sql_input" type="text" name="SQL">
+            <button id="submit_button" type="submit">Submit query</button>
+        </form>
+        <table>
+            {header}
+            {rows}
+        </table>
+    </article>
+</body>
+</html>

@@ -62,7 +62,6 @@ class DB:
                     result = ([col.name for col in db_cursor.description], db_cursor.fetchall())
                 except Exception as ex:
                     result = str(ex)
-                    print(result)
                 except KeyboardInterrupt:
                     raise
             db_cursor.close()

@@ -1,31 +1,28 @@
-#panel {
+#status_bar {
     width: 70%;
     margin-left: 10%;
     margin-right: 10%;
     margin-top: 3%;
 }
 
-table, th, td {
-    border: 1px solid gray;
-}
-
-#sql_field {
-    font-family: Monospace; margin-left: 10%; margin-right: 10%;
-}
-
-#textbox {
-    float: left;
-    width: 45%;
+#sql_gui {
+    margin-left: 10%;
+    margin-right: 10%;
     font-family: Monospace;
 }
 
-#input_field {
+#sql_form {
+    float: left;
+    width: 45%;
+}
+
+#sql_input {
     font-family: Monospace;
     width: 60%;
     float: left;
 }
 
-#input_button {
+#submit_button {
     width: 20%;
     float: right;
 }
@@ -33,5 +30,9 @@ table, th, td {
 table {
     float: right;
     width: 45%;
+    border: 1px solid gray;
 }
 
+th, td {
+    border: 1px solid gray;
+}
