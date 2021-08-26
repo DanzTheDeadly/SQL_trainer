@@ -15,7 +15,8 @@ def generate_get_response(db: DB) -> (int, str):
             style=style,
             tables=tables,
             header=header,
-            rows=''
+            rows='',
+            query=''
         )
     else:
         # send start html
@@ -29,6 +30,7 @@ def generate_post_response(post_request: str, db: DB) -> (int, str):
         style = file.read()
 
     if post_request.startswith('SQL='):
+        query = post_request.replace('SQL=', '').strip()
         with open('src/html/data.html') as file:
             html = file.read()
         # send sql
@@ -37,7 +39,7 @@ def generate_post_response(post_request: str, db: DB) -> (int, str):
             return 400, ''
         else:
             # process request and send data
-            query_result = db.query(post_request.replace('SQL=', ''))
+            query_result = db.query(query)
             if type(query_result) == str:
                 # error in query
                 header = '<tr><th>ERROR</th></tr>\n'
@@ -55,7 +57,8 @@ def generate_post_response(post_request: str, db: DB) -> (int, str):
                 style=style,
                 tables=tables,
                 header=header,
-                rows=rows
+                rows=rows,
+                query=query
             )
 
     elif post_request.startswith('DB_SIGNAL='):
@@ -72,7 +75,8 @@ def generate_post_response(post_request: str, db: DB) -> (int, str):
                 style=style,
                 tables=tables,
                 header=header,
-                rows=''
+                rows='',
+                query=''
             )
         else:
             # turn off

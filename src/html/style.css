@@ -1,4 +1,10 @@
+body {
+    background-color: #303030;
+    color: #CFD0D0;
+}
+
 #status_bar {
+    font-family: Monospace;
     width: 70%;
     margin-left: 10%;
     margin-right: 10%;
@@ -13,23 +19,32 @@
 
 #sql_form {
     float: left;
-    width: 45%;
+    width: 48%;
 }
 
 #sql_input {
+    background-color: #3A3A3F;
+    color: #CFD0D0;
     font-family: Monospace;
-    width: 60%;
+    width: 75%;
     float: left;
+    resize: vertical
+}
+
+#signal_button {
+    background-color: #A0A0AF;
 }
 
 #submit_button {
+    background-color: #A0A0AF;
     width: 20%;
     float: right;
 }
 
 table {
+    background-color: #3A3A3F;
     float: right;
-    width: 45%;
+    width: 48%;
     border: 1px solid gray;
 }
 

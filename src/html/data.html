@@ -13,13 +13,13 @@
         <p>Database UP</p>
         <p>Database tables: {tables}</p>
         <form method="post">
-            <input type="submit" name="DB_SIGNAL" value="Stop Database">
+            <button id="signal_button" name="DB_SIGNAL" type="submit">Stop database</button>
         </form>
     </article>
     <br>
     <article id="sql_gui">
         <form id="sql_form" method="post" enctype="text/plain">
-            <input id="sql_input" type="text" name="SQL">
+            <textarea id="sql_input" rows="15" name="SQL">{query}</textarea>
             <button id="submit_button" type="submit">Submit query</button>
         </form>
         <table>
