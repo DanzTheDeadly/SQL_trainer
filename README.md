@@ -17,7 +17,6 @@ Any containers are cleared after shutdown.
 The tool is under development.
 
 # TO DO:
-- big and autogrowing sql input field
 - refactor table generation  
 - more tables
 - more CSS

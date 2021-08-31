@@ -11,7 +11,7 @@ class DBHttpServer(HTTPServer):
         """Eat config, start database and fill it with random data"""
 
         self.config = config
-        self.db = DB(self.config['db_params'], self.config['data'])
+        self.db = DB(self.config['data'])
         super().__init__(
             (self.config['server_params']['host'], self.config['server_params']['port']),
             DBRequestHandler
