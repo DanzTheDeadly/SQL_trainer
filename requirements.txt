@@ -1,1 +1,2 @@
 PyYAML~=5.4.1
+pysqlite3-binary~=0.4.6

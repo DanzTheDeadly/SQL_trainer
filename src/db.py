@@ -1,4 +1,4 @@
-import sqlite3
+import pysqlite3 as sqlite3
 from sqlite3 import Connection
 from src.tables import \
     generate_users, \
