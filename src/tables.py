@@ -38,3 +38,14 @@ def generate_user_actions(data):
             ).strftime('%Y-%m-%d %H:%M:%S')
         )
     return ddl + query
+
+
+def generate_numbers():
+    with open('src/sql/numbers.sql') as sql:
+        ddl = sql.read()
+    dml = "INSERT INTO numbers VALUES ({number});\n"
+    query = ''
+    for i in range(1, 100):
+        if random.random() > 0.1:
+            query += dml.format(number=i)
+    return ddl + query

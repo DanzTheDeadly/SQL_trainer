@@ -2,7 +2,8 @@ import sqlite3
 from sqlite3 import Connection
 from src.tables import \
     generate_users, \
-    generate_user_actions
+    generate_user_actions, \
+    generate_numbers
 
 
 class DB:
@@ -48,6 +49,7 @@ class DB:
             db_cursor = db_conn.cursor()
             db_cursor.executescript(generate_users(self.DATA))
             db_cursor.executescript(generate_user_actions(self.DATA))
+            db_cursor.executescript(generate_numbers())
             #
             tables_sql = '''SELECT name FROM sqlite_master WHERE type = 'table' AND name NOT LIKE 'sqlite_%';'''
             self.TABLES = [table_name[0] for table_name in db_cursor.execute(tables_sql)]
