@@ -1,5 +1,5 @@
 CREATE TABLE users (
-    user_id SERIAL,
+    user_id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT,
     city TEXT,
     gender TEXT,
