@@ -16,8 +16,8 @@ Any data is cleared after shutdown.
 The tool is under development.
 
 # TO DO:
-- refactor table generation  
 - more tables
+- logging
 - more CSS
 - examples of complex queries
 - exercises with increasing difficulty
