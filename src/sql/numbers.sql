@@ -1,3 +1,3 @@
 CREATE TABLE numbers (
-    number INTEGER
+  number INTEGER
 );
