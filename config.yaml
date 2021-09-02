@@ -3,6 +3,7 @@ server_params:
   port: 8080
 
 data:
+  users_count: 100
   names:
     - Daniel
     - Igor
