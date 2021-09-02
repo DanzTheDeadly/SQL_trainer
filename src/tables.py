@@ -52,24 +52,11 @@ def generate_numbers():
 
 
 def generate_friends(data):
-    with open('src/sql/friends_duplicates.sql') as sql_dups:
-        ddl_dups = sql_dups.read()
     with open('src/sql/friends.sql') as sql:
         ddl = sql.read()
+    with open('src/sql/remove_duplicate_friends.sql') as sql_remove:
+        query_remove = sql_remove.read()
     dml = "INSERT INTO friends_duplicates VALUES ({user_id}, {friend_id});\n"
-    dml_no_dups = '''
-        INSERT INTO friends
-        SELECT
-          user_id
-        , friend_id
-        FROM friends_duplicates t1
-        EXCEPT
-        SELECT
-          friend_id
-        , user_id
-        FROM friends_duplicates;\n
-    '''
-    drop_dups_table = 'DROP TABLE friends_duplicates;\n'
     query = ''
     for i in range(1, data['users_count']+1):
         # some users will not have friends
@@ -77,4 +64,4 @@ def generate_friends(data):
             continue
         for j in range(random.randint(1, 5)):
             query += dml.format(user_id=i, friend_id=random.randint(1, data['users_count']))
-    return ddl_dups + ddl + query + dml_no_dups + drop_dups_table
+    return ddl + query + query_remove
