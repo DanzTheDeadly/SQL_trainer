@@ -16,6 +16,7 @@ Any data is cleared after shutdown.
 The tool is under development.
 
 # TO DO:
+- probably need Flask to grow
 - more tables
 - logging
 - more CSS
