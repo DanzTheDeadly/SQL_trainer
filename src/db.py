@@ -28,17 +28,20 @@ class DB:
         self.STATE_RUNNING = False
 
     def query(self, query):
-        with self.CONNECTION as db_conn:
-            db_cursor = db_conn.cursor()
-            try:
-                db_cursor.execute(query)
-                result = ([col[0] for col in db_cursor.description], db_cursor.fetchall())
-            except Exception as ex:
-                result = (['ERROR'], [(str(ex),)])
-            except KeyboardInterrupt:
-                raise
-            finally:
-                db_cursor.close()
+        if not query:
+            result = (['ERROR'], [('Empty query',)])
+        else:
+            with self.CONNECTION as db_conn:
+                db_cursor = db_conn.cursor()
+                try:
+                    db_cursor.execute(query)
+                    result = ([col[0] for col in db_cursor.description], db_cursor.fetchall())
+                except sqlite3.Error as ex:
+                    result = (['ERROR'], [(str(ex),)])
+                except KeyboardInterrupt:
+                    raise
+                finally:
+                    db_cursor.close()
         return result
 
     def create_tables(self, data):

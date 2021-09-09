@@ -1,5 +1,4 @@
-import flask
-from flask import Flask, render_template, redirect, request, abort
+from flask import Flask, render_template, redirect, request
 from src.db import DB
 import yaml
 
@@ -19,7 +18,7 @@ def index():
     # create db
     elif request.method.upper() == 'POST':
         if db.STATE_RUNNING:
-            return abort(404)
+            return redirect('/')
         else:
             if request.form.get('DB_COMMAND') == 'CREATE':
                 db.start()
@@ -46,12 +45,11 @@ def db_gui():
             else:
                 query = request.form.get('SQL')
                 columns, rows = db.query(query)
-                print(columns)
-                print(rows)
                 return render_template('db_data.html',
                                        tables=db.TABLES,
                                        header=columns,
-                                       rows=rows)
+                                       rows=rows,
+                                       query=query)
 
 
 if __name__ == '__main__':

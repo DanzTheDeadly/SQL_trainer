@@ -15,9 +15,17 @@
             <button id="submit_button" type="submit">Submit query</button>
         </form>
         <table>
-            <tr><th>{{ '</th><th>'.join(header) }}</th></tr>
+            <tr>
+                {% for cell in header %}
+                    <th>{{ cell }}</th>
+                {% endfor %}
+            </tr>
             {% for row in rows %}
-                <tr><td>{{ '</td><td>'.join(row) }}</td></tr>
+                <tr>
+                    {% for cell in row %}
+                        <td>{{ cell }}</td>
+                    {% endfor %}
+                </tr>
             {% endfor %}
         </table>
     </article>
