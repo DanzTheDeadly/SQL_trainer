@@ -4,6 +4,7 @@ server_params:
 
 data:
   users_count: 100
+  start_timestamp: 1609448400
   names:
     - Daniel
     - Igor
@@ -38,4 +39,3 @@ data:
     - purchase
     - cart
     - favourite
-  start_timestamp: 1609448400

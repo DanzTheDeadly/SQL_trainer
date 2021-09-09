@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block body %}
+    <article id="status_bar">
+        <p>Database GUI</p>
+        <p>Database UP</p>
+        <p>Database tables: {{ ', '.join(tables) }}</p>
+        <form method="post">
+            <button id="signal_button" name="DB_COMMAND" type="submit" value="DELETE">Delete database</button>
+        </form>
+    </article>
+    <br>
+    <article id="sql_gui">
+        <form id="sql_form" method="post">
+            <textarea id="sql_input" rows="15" name="SQL">{{ query }}</textarea>
+            <button id="submit_button" type="submit">Submit query</button>
+        </form>
+        <table>
+            <tr><th>{{ '</th><th>'.join(header) }}</th></tr>
+            {% for row in rows %}
+                <tr><td>{{ '</td><td>'.join(row) }}</td></tr>
+            {% endfor %}
+        </table>
+    </article>
+{% endblock %}

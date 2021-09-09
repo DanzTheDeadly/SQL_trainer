@@ -4,7 +4,7 @@ from math import floor
 
 
 def generate_users(data):
-    with open('src/sql/users.sql') as sql:
+    with open('sql/users.sql') as sql:
         ddl = sql.read()
     dml = "INSERT INTO users (name, city, gender, regdate) " \
           "VALUES ('{name}', '{city}', '{gender}', '{regdate}');\n"
@@ -22,7 +22,7 @@ def generate_users(data):
 
 
 def generate_user_actions(data):
-    with open('src/sql/user_actions.sql') as sql:
+    with open('sql/user_actions.sql') as sql:
         ddl = sql.read()
     dml = "INSERT INTO user_actions (user_id, action, city, device, ts) " \
           "VALUES ('{user_id}', '{action}', '{city}', '{device}', '{ts}');\n"
@@ -41,7 +41,7 @@ def generate_user_actions(data):
 
 
 def generate_numbers():
-    with open('src/sql/numbers.sql') as sql:
+    with open('sql/numbers.sql') as sql:
         ddl = sql.read()
     dml = "INSERT INTO numbers VALUES ({number});\n"
     query = ''
@@ -52,9 +52,9 @@ def generate_numbers():
 
 
 def generate_friends(data):
-    with open('src/sql/friends.sql') as sql:
+    with open('sql/friends.sql') as sql:
         ddl = sql.read()
-    with open('src/sql/remove_duplicate_friends.sql') as sql_remove:
+    with open('sql/remove_duplicate_friends.sql') as sql_remove:
         query_remove = sql_remove.read()
     dml = "INSERT INTO friends_duplicates VALUES ({user_id}, {friend_id});\n"
     query = ''
