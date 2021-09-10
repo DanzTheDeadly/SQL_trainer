@@ -1,4 +1,7 @@
 {% extends 'base.html' %}
+{% block example_buttons %}
+    <button onclick="window.location.href='{{ url_for('example', num=1) }}'">Go to examples</button>
+{% endblock %}
 {% block body %}
     <article id="status_bar">
         <p>Database DOWN</p>

@@ -1,10 +1,10 @@
 body {
     background-color: #303030;
+    font-family: Monospace;
     color: #CFD0D0;
 }
 
 #header {
-    font-family: Monospace;
     text-align: center;
     margin-top: 3%;
 }
@@ -17,18 +17,28 @@ a:visited {
     color: white;
 }
 
-#status_bar {
-    font-family: Monospace;
+#examples {
     width: 70%;
     margin-left: 10%;
     margin-right: 10%;
     margin-top: 3%;
 }
 
+button {
+    background-color: #A0A0AF;
+    width: 130px;
+}
+
+#status_bar {
+    width: 70%;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 20px;
+}
+
 #sql_gui {
     margin-left: 10%;
     margin-right: 10%;
-    font-family: Monospace;
 }
 
 #sql_form {
@@ -39,19 +49,12 @@ a:visited {
 #sql_input {
     background-color: #3A3A3F;
     color: #CFD0D0;
-    font-family: Monospace;
     width: 75%;
     float: left;
     resize: vertical
 }
 
-#signal_button {
-    background-color: #A0A0AF;
-}
-
 #submit_button {
-    background-color: #A0A0AF;
-    width: 20%;
     float: right;
 }
 

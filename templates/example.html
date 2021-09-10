@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block example_buttons %}
+    <button onclick="window.location.href='{{ url_for('index') }}'">Back</button>
+    {% if num > 1 %}
+        <button onclick="window.location.href='{{ url_for('example', num=num-1) }}'"><< Previous</button>
+    {% else %}
+        <button onclick="window.location.href='{{ url_for('example', num=num-1) }}'" disabled="true"><< Previous</button>
+    {% endif %}
+    <button onclick="window.location.href='{{ url_for('example', num=num+1) }}'">Next >></button>
+{% endblock %}
+{% block body %}
+    example {{ num }}
+{% endblock %}

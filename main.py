@@ -1,3 +1,4 @@
+import flask
 from flask import Flask, render_template, redirect, request, abort
 from src.db import DB
 import yaml
@@ -54,6 +55,11 @@ def db_gui():
                                        query=query)
         else:
             return abort(400)
+
+
+@server.route('/example<int:num>')
+def example(num):
+    return render_template('example.html', num=num)
 
 
 if __name__ == '__main__':
