@@ -5,15 +5,14 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <article id="header">
-        <h1>SQL exercises</h1>
-        <p>by Danz The Deadly</p>
-        <a href="https://github.com/DanzTheDeadly/SQL_trainer" target="_blank">Github</a>
-    </article>
-    <article id="examples">
-        <h1>Look at examples</h1>
-        {% block example_buttons %} {% endblock %}
-    </article>
-    {% block body %} {% endblock %}
+    <section id="main_area">
+        <div id="header_block">
+            <h1 id="header_block_title">SQL EXERCISES</h1>
+            <p>by Danz The Deadly</p>
+            <a href="https://github.com/DanzTheDeadly/SQL_trainer" target="_blank">Github</a>
+        </div>
+        {% block examples_nav %} {% endblock %}
+        {% block data %} {% endblock %}
+    </section>
 </body>
 </html>

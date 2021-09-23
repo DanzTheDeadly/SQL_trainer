@@ -1,12 +1,10 @@
 body {
     background-color: #303030;
-    font-family: Monospace;
-    color: #CFD0D0;
 }
 
-#header {
-    text-align: center;
-    margin-top: 3%;
+button {
+    background-color: #A0A0AF;
+    width: 130px;
 }
 
 a:link {
@@ -17,51 +15,76 @@ a:visited {
     color: white;
 }
 
-#examples {
-    width: 70%;
-    margin-left: 10%;
-    margin-right: 10%;
-    margin-top: 3%;
-}
-
-button {
-    background-color: #A0A0AF;
-    width: 130px;
-}
-
-#status_bar {
-    width: 70%;
-    margin-left: 10%;
-    margin-right: 10%;
-    margin-top: 20px;
-}
-
-#sql_gui {
-    margin-left: 10%;
-    margin-right: 10%;
-}
-
-#sql_form {
-    float: left;
-    width: 48%;
-}
-
-#sql_input {
-    background-color: #3A3A3F;
+#main_area {
+    background-color: #373737;
     color: #CFD0D0;
-    width: 75%;
-    float: left;
-    resize: vertical
+    margin-top: 1%;
+    margin-right: 20%;
+    margin-left: 20%;
+    padding: 10px;
 }
 
-#submit_button {
-    float: right;
+#header_block {
+    padding: 10px;
+    background-color: #505050;
+    text-align: center;
+    font-family: Monospace;
+}
+
+#header_block_title {
+    font-size: 20px;
+    letter-spacing: 8px;
+}
+
+#examples_nav_block {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #454545;
+    text-align: center;
+    font-family: Monospace;
+}
+
+#examples_body_block {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #454545;
+    font-family: Monospace;
+}
+
+#status_block {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #454545;
+    font-family: Monospace;
+}
+
+#sql_block {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #454545;
+    font-family: Monospace;
+}
+
+#sql_block_editor {
+    flex-grow: 0;
+    align-self: flex-start;
+    width: 50%;
+    margin-right: 15px;
+}
+
+#sql_block_editor_input {
+    background-color: #3A3A3A;
+    color: #CFD0D0;
+    width: 100%;
+    resize: vertical;
 }
 
 table {
-    background-color: #3A3A3F;
-    float: right;
-    width: 48%;
+    flex-grow: 1;
+    align-self: flex-start;
+    background-color: #3A3A3A;
     border: 1px solid gray;
 }
 

@@ -1,13 +1,16 @@
 {% extends 'base.html' %}
-{% block example_buttons %}
-    <button onclick="window.location.href='{{ url_for('index') }}'">Back</button>
+{% block examples_nav %}
+<div id="examples_nav_block">
+    <p>Navigate examples</p>
     {% if num > 1 %}
         <button onclick="window.location.href='{{ url_for('example', num=num-1) }}'"><< Previous</button>
     {% else %}
         <button onclick="window.location.href='{{ url_for('example', num=num-1) }}'" disabled="true"><< Previous</button>
     {% endif %}
+    <button onclick="window.location.href='{{ url_for('index') }}'">Back</button>
     <button onclick="window.location.href='{{ url_for('example', num=num+1) }}'">Next >></button>
-{% endblock %}
-{% block body %}
-    example {{ num }}
+</div>
+<div id="examples_body_block">
+    <p>Example {{ num }}</p>
+</div>
 {% endblock %}

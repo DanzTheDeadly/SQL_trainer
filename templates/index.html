@@ -1,12 +1,15 @@
 {% extends 'base.html' %}
-{% block example_buttons %}
+{% block examples_nav %}
+<div id="examples_nav_block">
+    <p>Look at examples</p>
     <button onclick="window.location.href='{{ url_for('example', num=1) }}'">Go to examples</button>
+</div>
 {% endblock %}
-{% block body %}
-    <article id="status_bar">
+{% block data %}
+<div id="status_block">
         <p>Database DOWN</p>
         <form method="post">
             <button id="signal_button" name="DB_COMMAND" type="submit" value="CREATE">Create database</button>
         </form>
-    </article>
+</div>
 {% endblock %}

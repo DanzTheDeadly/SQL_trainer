@@ -1,4 +1,3 @@
-import flask
 from flask import Flask, render_template, redirect, request, abort
 from src.db import DB
 import yaml
@@ -34,7 +33,7 @@ def db_gui():
     # do nothing
     if request.method.upper() == 'GET':
         if db.STATE_RUNNING:
-            return render_template('db_nodata.html', tables=db.TABLES)
+            return render_template('base_data.html', tables=db.TABLES)
         else:
             return redirect('/')
     # process commands
@@ -48,7 +47,7 @@ def db_gui():
             else:
                 query = request.form.get('SQL')
                 columns, rows = db.query(query)
-                return render_template('db_data.html',
+                return render_template('result_data.html',
                                        tables=db.TABLES,
                                        header=columns,
                                        rows=rows,
