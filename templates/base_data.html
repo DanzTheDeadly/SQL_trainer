@@ -16,7 +16,7 @@
 <div id="sql_block">
     <div id="sql_block_editor">
         <form id="editor" method="post">
-            <textarea id="sql_block_editor_input" rows="15" name="SQL">{{ query }}</textarea>
+            <textarea id="sql_block_editor_input" rows="{{ query_lines_num }}" name="SQL">{{ query }}</textarea>
         </form>
         <button form="editor" type="submit">Submit query</button>
     </div>

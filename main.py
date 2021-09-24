@@ -33,7 +33,9 @@ def db_gui():
     # do nothing
     if request.method.upper() == 'GET':
         if db.STATE_RUNNING:
-            return render_template('base_data.html', tables=db.TABLES)
+            return render_template('base_data.html',
+                                   tables=db.TABLES,
+                                   query_lines_num=15)
         else:
             return redirect('/')
     # process commands
@@ -45,12 +47,14 @@ def db_gui():
                 return redirect('/')
             # return table with data
             else:
-                query = request.form.get('SQL')
+                query = request.form.get('SQL').strip()
+                query_lines_num = 15 if query.count('\n') < 14 else query.count('\n')+1
                 columns, rows = db.query(query)
                 return render_template('result_data.html',
                                        tables=db.TABLES,
                                        header=columns,
                                        rows=rows,
+                                       query_lines_num=query_lines_num,
                                        query=query)
         else:
             return abort(400)
