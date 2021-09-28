@@ -1,6 +1,7 @@
 from flask import Flask, render_template, redirect, request, abort
 from src.db import DB
 import yaml
+import os
 
 
 server = Flask('SQL Trainer')
@@ -62,7 +63,16 @@ def db_gui():
 
 @server.route('/example<int:num>')
 def example(num):
-    return render_template('example.html', num=num)
+    with open(os.path.join(os.path.dirname(__file__), 'examples', 'example{}.sql'.format(num))) as query_file:
+        query = query_file.read()
+    with open(os.path.join(os.path.dirname(__file__), 'examples', 'example{}.txt'.format(num))) as descr_file:
+        descr = descr_file.read()
+    query_lines_num = 15 if query.count('\n') < 14 else query.count('\n')+1
+    return render_template('example.html',
+                            num=num,
+                            query_lines_num=query_lines_num,
+                            query=query,
+                            descr=descr)
 
 
 if __name__ == '__main__':

@@ -11,6 +11,7 @@
     <button onclick="window.location.href='{{ url_for('example', num=num+1) }}'">Next >></button>
 </div>
 <div id="examples_body_block">
-    <p>Example {{ num }}</p>
+    <textarea readonly id="examples_body_block_sql" rows="{{ query_lines_num }}">{{ query }}</textarea>
+    <div id="examples_body_block_descr">{{ descr }}</div>
 </div>
 {% endblock %}

@@ -45,6 +45,8 @@ a:visited {
 }
 
 #examples_body_block {
+    display: flex;
+    justify-content: flex-start;
     margin-top: 10px;
     padding: 10px;
     background-color: #454545;
@@ -90,4 +92,20 @@ table {
 
 th, td {
     border: 1px solid gray;
+}
+
+#examples_body_block_sql {
+    color: #CFD0D0;
+    flex-grow: 0;
+    align-self: flex-start;
+    background-color: #3A3A3A;
+    width: 50%;
+    resize: none;
+    margin-right: 15px;
+}
+
+#examples_body_block_descr {
+    flex-grow: 0;
+    align-self: flex-start;
+    color: #CFD0D0;
 }
