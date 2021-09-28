@@ -63,6 +63,7 @@ def db_gui():
 
 @server.route('/example<int:num>')
 def example(num):
+    total_examples = 3
     with open(os.path.join(os.path.dirname(__file__), 'examples', 'example{}.sql'.format(num))) as query_file:
         query = query_file.read()
     with open(os.path.join(os.path.dirname(__file__), 'examples', 'example{}.txt'.format(num))) as descr_file:
@@ -70,6 +71,7 @@ def example(num):
     query_lines_num = 15 if query.count('\n') < 14 else query.count('\n')+1
     return render_template('example.html',
                             num=num,
+                            total_examples=total_examples,
                             query_lines_num=query_lines_num,
                             query=query,
                             descr=descr)

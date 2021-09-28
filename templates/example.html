@@ -8,7 +8,11 @@
         <button onclick="window.location.href='{{ url_for('example', num=num-1) }}'" disabled="true"><< Previous</button>
     {% endif %}
     <button onclick="window.location.href='{{ url_for('index') }}'">Back</button>
-    <button onclick="window.location.href='{{ url_for('example', num=num+1) }}'">Next >></button>
+    {% if num < total_examples %}
+        <button onclick="window.location.href='{{ url_for('example', num=num+1) }}'">Next >></button>
+    {% else %}
+        <button onclick="window.location.href='{{ url_for('example', num=num+1) }}'" disabled="true">Next >></button>
+    {% endif %}
 </div>
 <div id="examples_body_block">
     <textarea readonly id="examples_body_block_sql" rows="{{ query_lines_num }}">{{ query }}</textarea>
