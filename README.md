@@ -16,6 +16,7 @@ Any data is cleared after shutdown.
 The tool is under development.
 
 # TO DO:
+- add connection to existing DB
 - more tables
 - logging
 - more CSS
