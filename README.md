@@ -16,6 +16,7 @@ Any data is cleared after shutdown.
 The tool is under development.
 
 # TO DO:
+- make run.sh script
 - add connection to existing DB
 - more tables
 - logging
