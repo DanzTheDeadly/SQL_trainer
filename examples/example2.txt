@@ -1,1 +1,1 @@
-DESCRIPTION
+Show the most common name among all cities, it's city and count
