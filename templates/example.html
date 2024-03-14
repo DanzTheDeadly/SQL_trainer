@@ -2,12 +2,12 @@
 {% block examples_nav %}
 <div id="examples_nav_block">
     <p>Navigate examples</p>
+    <button onclick="window.location.href='{{ url_for('index') }}'">Back</button>
     {% if num > 1 %}
         <button onclick="window.location.href='{{ url_for('example', num=num-1) }}'"><< Previous</button>
     {% else %}
         <button onclick="window.location.href='{{ url_for('example', num=num-1) }}'" disabled="true"><< Previous</button>
     {% endif %}
-    <button onclick="window.location.href='{{ url_for('index') }}'">Back</button>
     {% if num < total_examples %}
         <button onclick="window.location.href='{{ url_for('example', num=num+1) }}'">Next >></button>
     {% else %}
